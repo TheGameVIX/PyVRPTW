@@ -1,0 +1,12 @@
+import pandas as pd
+
+def cache_geocodes(geocoded_data):
+    geocoded_cache = pd.DataFrame(geocoded_data, columns=['Address', 'City', 'State', 'Zip Code', 'Latitude', 'Longitude'])
+    geocoded_cache.to_csv('geocoded_cache.csv', index=False)
+
+def load_cached_geocodes():
+    try:
+        geocoded_cache = pd.read_csv('geocoded_cache.csv')
+        return geocoded_cache
+    except FileNotFoundError:
+        return pd.DataFrame(columns=['Address', 'City', 'State', 'Zip Code', 'Latitude', 'Longitude'])

@@ -1,0 +1,9 @@
+import pandas as pd
+
+def handle_failed_geocodes(failed_geocodes):
+    failed_to_geocode_df = pd.DataFrame(failed_geocodes, columns=['Address', 'City', 'State', 'Zip Code'])
+    failed_to_geocode_df.to_csv('failed_to_geocode.csv', index=False)
+
+# Example usage:
+# failed_geocodes = [('1234 Example Address', 'NC', '27370'), ('1244 Example Address', 'NC', '27370')]
+# handle_failed_geocodes(failed_geocodes)
