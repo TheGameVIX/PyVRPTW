@@ -1,0 +1,32 @@
+The log.txt file is not a code file, but a text file where the logs are written. However, the logger.py file can be created to handle the logging process. Here is the Python code for logger.py:
+
+```python
+import logging
+
+# Create a custom logger
+logger = logging.getLogger(__name__)
+
+# Create handlers
+c_handler = logging.StreamHandler()
+f_handler = logging.FileHandler('log.txt')
+c_handler.setLevel(logging.WARNING)
+f_handler.setLevel(logging.ERROR)
+
+# Create formatters and add it to handlers
+c_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c_handler.setFormatter(c_format)
+f_handler.setFormatter(f_format)
+
+# Add handlers to the logger
+logger.addHandler(c_handler)
+logger.addHandler(f_handler)
+
+def log_error(error_message):
+    logger.error(error_message)
+
+def log_warning(warning_message):
+    logger.warning(warning_message)
+```
+
+This logger.py file sets up a logger that logs error messages to log.txt and warning messages to the console. The log_error and log_warning functions can be used throughout the other Python files to log any errors or warnings that occur.
